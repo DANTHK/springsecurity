@@ -12,6 +12,7 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
+import top.shang.springsecurity.exceptions.ErrorCodeException;
 
 @Component
 @Slf4j
@@ -25,7 +26,7 @@ public class JwtFilter implements WebFilter {
             return chain.filter(exchange);
         String auth = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
         if (auth == null) {
-            return Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unauthorized"));
+            return Mono.error(ErrorCodeException.UNAUTHORIZED);
         }
         String prefix = "Bearer ";
         if (!StringUtils.startsWithIgnoreCase(auth, prefix)) {

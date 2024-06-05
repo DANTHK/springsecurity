@@ -6,8 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import top.shang.springsecurity.exceptions.ErrorCodeException;
 import top.shang.springsecurity.service.UserService;
 
 @Component
@@ -34,6 +34,6 @@ public class UserHandler {
                 .flatMap(userResp -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(userResp))
-                .switchIfEmpty(ServerResponse.notFound().build());
+                .switchIfEmpty(Mono.error(ErrorCodeException.USER_NOT_FOUND));
     }
 }
