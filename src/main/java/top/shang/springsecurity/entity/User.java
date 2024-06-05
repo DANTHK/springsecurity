@@ -1,6 +1,10 @@
 package top.shang.springsecurity.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,6 +19,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @Builder
 public class User implements UserDetails {
+    @Id
     private int id;
     private String username;
     private String email;

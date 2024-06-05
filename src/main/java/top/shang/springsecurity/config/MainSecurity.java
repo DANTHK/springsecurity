@@ -26,7 +26,7 @@ public class MainSecurity {
                         .pathMatchers("/auth/**").permitAll()
                         .anyExchange().authenticated()
                 )
-                .addFilterAfter(jwtFilter, SecurityWebFiltersOrder.AUTHORIZATION)
+                .addFilterAfter(jwtFilter, SecurityWebFiltersOrder.FIRST)
                 .securityContextRepository(securityContextRepository)
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
