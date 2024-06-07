@@ -22,7 +22,7 @@ import java.net.URI;
 public class FilterExceptionHandler implements ErrorWebExceptionHandler {
     @Override
     public @Nonnull Mono<Void> handle(@Nonnull ServerWebExchange exchange, @Nonnull Throwable ex) {
-        HttpStatus httpStatus = null;
+        HttpStatus httpStatus;
         if (ex instanceof CommonException e) {
             httpStatus = HttpStatus.valueOf(e.getCode());
         } else {
